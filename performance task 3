@@ -1,0 +1,204 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        String customerName;
+        String tableAddress;
+        String customerType;
+        String diningOption;
+        String foodItemOrdered;
+
+        int customerTypeChoice;
+        int diningChoice;
+        int foodCategory;
+        int foodChoice;
+        int quantity;
+
+        double price = 0;
+        double distance = 0;
+        double tax;
+        double subtotal;
+        double discount;
+        double serviceCharge;
+        double deliveryFee = 0;
+        double totalCost;
+
+        System.out.println("===========================");
+        System.out.println("Restaurant Ordering System");
+        System.out.println("===========================");
+
+        System.out.print("Customer Name: ");
+        customerName = input.nextLine();
+
+        System.out.print("Table Number / Address: ");
+        tableAddress = input.nextLine();
+
+        // Customer Type
+
+        System.out.println("\nCustomer Type:");
+        System.out.println("1 - Regular");
+        System.out.println("2 - Senior/PWD");
+        System.out.print("Enter choice: ");
+        customerTypeChoice = input.nextInt();
+
+        if (customerTypeChoice == 1) {
+            customerType = "Regular";
+        } else {
+            customerType = "Senior/PWD";
+        }
+
+
+
+        System.out.println("\nDining Option:");
+        System.out.println("1 - Dine-in");
+        System.out.println("2 - Take-out");
+        System.out.println("3 - Delivery");
+        System.out.print("Enter choice: ");
+        diningChoice = input.nextInt();
+
+        if (diningChoice == 1) {
+            diningOption = "Dine-in";
+        } else if (diningChoice == 2) {
+            diningOption = "Take-out";
+        } else {
+            diningOption = "Delivery";
+        }
+
+
+
+        System.out.println("\nFood Category:");
+        System.out.println("1 - Meals");
+        System.out.println("2 - Drinks");
+        System.out.println("3 - Desserts");
+        System.out.print("Enter choice: ");
+        foodCategory = input.nextInt();
+
+
+
+        if (foodCategory == 1) {
+
+            System.out.println("\nMeals:");
+            System.out.println("1 - Chicken Meal - P150");
+            System.out.println("2 - Pork Meal - P180");
+            System.out.println("3 - Beef Meal - P220");
+            System.out.print("Choose Food: ");
+            foodChoice = input.nextInt();
+
+            if (foodChoice == 1) {
+                foodItemOrdered = "Chicken Meal";
+                price = 150;
+            } else if (foodChoice == 2) {
+                foodItemOrdered = "Pork Meal";
+                price = 180;
+            } else {
+                foodItemOrdered = "Beef Meal";
+                price = 220;
+            }
+
+        } else if (foodCategory == 2) {
+
+            System.out.println("\nDrinks:");
+            System.out.println("1 - Softdrinks - P40");
+            System.out.println("2 - Juice - P60");
+            System.out.println("3 - Coffee - P80");
+            System.out.print("Choose Food: ");
+            foodChoice = input.nextInt();
+
+            if (foodChoice == 1) {
+                foodItemOrdered = "Softdrinks";
+                price = 40;
+            } else if (foodChoice == 2) {
+                foodItemOrdered = "Juice";
+                price = 60;
+            } else {
+                foodItemOrdered = "Coffee";
+                price = 80;
+            }
+
+        } else {
+
+            System.out.println("\nDesserts:");
+            System.out.println("1 - Ice Cream - P70");
+            System.out.println("2 - Cake Slice - P90");
+            System.out.println("3 - Halo-halo - P120");
+            System.out.print("Choose Food: ");
+            foodChoice = input.nextInt();
+
+            if (foodChoice == 1) {
+                foodItemOrdered = "Ice Cream";
+                price = 70;
+            } else if (foodChoice == 2) {
+                foodItemOrdered = "Cake Slice";
+                price = 90;
+            } else {
+                foodItemOrdered = "Halo-halo";
+                price = 120;
+            }
+        }
+
+
+        System.out.print("\nEnter Quantity: ");
+        quantity = input.nextInt();
+
+
+
+        subtotal = quantity * price;
+
+        tax = subtotal * 0.12;
+
+        serviceCharge = subtotal * 0.10;
+
+        if (customerTypeChoice == 2) {
+            discount = subtotal * 0.20;
+        } else {
+            discount = 0;
+        }
+
+
+        if (diningChoice == 3) {
+
+            System.out.print("Enter Distance (km): ");
+            distance = input.nextDouble();
+
+            if (distance <= 5) {
+                deliveryFee = 0;
+            } else {
+                deliveryFee = (distance - 5) * 40;
+            }
+        }
+
+
+
+        totalCost = subtotal + tax + serviceCharge + deliveryFee - discount;
+
+
+
+        System.out.println("\n===========================");
+        System.out.println("       ORDER SUMMARY");
+        System.out.println("===========================");
+
+        System.out.println("Customer Name: " + customerName);
+        System.out.println("Table / Address: " + tableAddress);
+        System.out.println("Customer Type: " + customerType);
+        System.out.println("Dining Option: " + diningOption);
+        System.out.println("Food Item Ordered: " + foodItemOrdered);
+        System.out.println("Quantity: " + quantity);
+        System.out.println("Price per Item: P" + price);
+
+        System.out.println("---------------------------");
+
+        System.out.println("Subtotal: P" + subtotal);
+        System.out.println("Tax: P" + tax);
+        System.out.println("Discount: P" + discount);
+        System.out.println("Service Charge: P" + serviceCharge);
+        System.out.println("Delivery Fee: P" + deliveryFee);
+        System.out.println("Final Total Cost: P" + totalCost);
+
+        System.out.println("===========================");
+
+
+    }
+}
